@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Core.Entities.Concrete;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,5 +20,13 @@ namespace Business.Constants
         public static string OrderGet = "Siparişler Listelendi.";
 
         public static string OrderGive = "Sipariş Verildi.";
+
+        public static string UserNameOrPasswordError = "Kullanıcı adı veya sifre hatalı";
+
+        public static string UserExistsError = "Böyle bir kullanıcı yok.";
+
+        public static string LoginSuccess = "Giriş başarılı!";
+
+        public static string TokenCreate = "Token Oluşturuldu.";
     }
 }
