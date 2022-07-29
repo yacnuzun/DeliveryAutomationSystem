@@ -18,24 +18,50 @@ namespace DataAccess.Concrete
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>().HasData(
-               new User {  Email = "acompany@gmail.com", Password = "123" },
-               new User {  Email = "bcompany@gmail.com", Password = "345"}
+               new User { Id=1 ,Email = "acompany@gmail.com", Password = "123" },
+               new User { Id=2 ,Email = "bcompany@gmail.com", Password = "345"}
                );
             modelBuilder.Entity<UserOperationClaim>().HasData(
-                new UserOperationClaim { UserId = 1, OperationClaimId = "Admin" },
-                new Role { RoleId = 2, RoleName = "Moderator" }
+                new UserOperationClaim { UserId = 1, OperationClaimId = 1 },
+                new UserOperationClaim { UserId = 1, OperationClaimId = 2 },
+                new UserOperationClaim { UserId = 1, OperationClaimId = 3 },
+                new UserOperationClaim { UserId = 1, OperationClaimId = 5 },
+                new UserOperationClaim { UserId = 2, OperationClaimId = 1 },
+                new UserOperationClaim { UserId = 1, OperationClaimId = 4 },
+                new UserOperationClaim { UserId = 1, OperationClaimId = 6 },
+                new UserOperationClaim { UserId = 1, OperationClaimId = 7 }
                 );
-            modelBuilder.Entity<Category>().HasData(
-                new Category { CategoryId = 1, CategoryName = "Vegan" },
-                new Category { CategoryId = 2, CategoryName = "Meat" },
-                new Category { CategoryId = 3, CategoryName = "Breakfast" },
-                new Category { CategoryId = 4, CategoryName = "Sea Food" }
+            modelBuilder.Entity<OperationClaim>().HasData(
+                new OperationClaim { Id=1 ,Name = "GetDelivery" },
+                new OperationClaim { Id=2 ,Name = "deliveryenter" },
+                new OperationClaim { Id=3 ,Name = "deliveryhandover" },
+                new OperationClaim { Id=4 ,Name = "deliverytake" },
+                new OperationClaim { Id = 5, Name = "getorder" },
+                new OperationClaim { Id = 6, Name = "addproduct" },
+                new OperationClaim { Id = 7, Name = "addorder" }
                 );
-            modelBuilder.Entity<Recipe>().HasData(
-                new Recipe { Id = 1, CategoryId = 1, Title = "Falafel", Detail = Falafel, Image = "https://www.nefissyemektarifleri.com/wp-content/uploads/2018/07/falafel-tarifi.jpg", Ingredients = FalafelIngredients },
-                new Recipe { Id = 2, CategoryId = 2, Title = "Steak", Detail = Steak, Image = "https://ozhacibeytepeoren.com/wp-content/uploads/2020/03/Dana-Antrikot-350x200.jpg", Ingredients = SteakIngredients },
-                new Recipe { Id = 3, CategoryId = 4, Title = "Fırında Lüfer", Detail = FırındaLufer, Image = "https://www.enpratikbilgiler.com/wp-content/uploads/2020/12/lufer-baligi-nasil-pisirilir-en-kolay-lufer-baligi-pisirme-yontemi-firinda-lufer-tarifi-VBBUiTP9.jpg", Ingredients = FırındaLuferIngredients },
-                new Recipe { Id = 4, CategoryId = 3, Title = "Kruvasan", Detail = Kruvasan, Image = "https://cdn.yemek.com/mncrop/940/625/uploads/2014/10/kruvasan-tarifi.jpg", Ingredients = KruvasanIngredients }
+            modelBuilder.Entity<Product>().HasData(
+                new Product { ProductId=1,ProductName="Tablet" },
+                new Product { ProductId=2,ProductName="Laptop" },
+                new Product { ProductId=3,ProductName="Telefon" },
+                new Product { ProductId = 4, ProductName = "Hoparlör" }
+                );
+            modelBuilder.Entity<Delivery>().HasData(
+                new Delivery { DeliveryId=1,VehicleNumber = "02A223", DeliveryDate = DateTime.Parse("2022-07-29 14:40:52,531"), CargoMan = "Ahmet", Status = 0 },
+                new Delivery { DeliveryId=2,DeliveryDate = DateTime.Parse("2022-07-29 14:40:52,531"), VehicleNumber = "20B2020", CargoMan = "Mehmet", Status = 0 },
+                new Delivery { DeliveryId=3,DeliveryDate = DateTime.Parse("2021-07-29 14:40:52,531"), VehicleNumber = "30C234", CargoMan = "Ali", Status = 2 },
+                new Delivery { DeliveryId =4, DeliveryDate = DateTime.Parse("2021-07-29 14:40:52,531"), VehicleNumber = "15v3030", CargoMan = "Esra", Status = 2 }
+                );
+            modelBuilder.Entity<Order>().HasData(
+                new Order { OrderId= 1,OrderDate = DateTime.Parse("2021-07-29 14:40:52,531"), EndPoint = "Zonguldak", StartPoint = "Bursa", ContactNumber = "" },
+                new Order { OrderId = 2, OrderDate = DateTime.Parse("2021-07-29 14:40:52,531"), EndPoint = "Samsun", StartPoint = "İstanbul", ContactNumber = ""},
+                new Order { OrderId = 3, OrderDate = DateTime.Parse("2021-07-29 14:40:52,531"), EndPoint = "İstanbul", StartPoint = "İzmir", ContactNumber = ""},
+                new Order { OrderId = 4, OrderDate = DateTime.Parse("2021-07-29 14:40:52,531"), EndPoint = "Antalya", StartPoint = "Muğla", ContactNumber = ""}
+                );
+            modelBuilder.Entity<OrderProduct>().HasData(
+                new OrderProduct { OrderId = 1, ProductId = 2, Quantity = 30 },
+                new OrderProduct { OrderId = 2, ProductId = 2, Quantity = 20 },
+                new OrderProduct { OrderId = 1, ProductId = 2, Quantity = 40 }
                 );
         }
         public DbSet<Delivery> Deliveries { get; set; }

@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using Entity.Concrete;
 using Entity.Dto_s;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
@@ -16,6 +17,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getall")]
+        [Authorize(Roles = "getorders")]
         public IActionResult GetAll()
         {
             var result = _orderService.GetAll();
@@ -26,6 +28,7 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
         [HttpGet("addproduct")]
+        [Authorize(Roles = "addproduct")]
         public IActionResult AddProduct(ProductDetailsDto pDetail)
         {
             productDetails.Add(pDetail);
@@ -37,6 +40,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("addorder")]
+        [Authorize(Roles = "addorder")]
         public IActionResult AddOrder(Order order)
         {
             var result = _orderService.AddOrder(order, productDetails);
