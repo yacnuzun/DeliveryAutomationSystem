@@ -2,6 +2,8 @@
 using Entity.Concrete;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
+
 
 namespace WebAPI.Controllers
 {
@@ -26,9 +28,9 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
-        //[Authorize(Roles = "DeliveryEnter")]
 
         [HttpPost("deliveryenter")]
+        [Authorize(Roles = "deliveryenter")]
         public IActionResult DeliveryEnter(Delivery delivery)
         {
             var result = _deliveryService.DeliveryEnter(delivery);
@@ -40,6 +42,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("deliveryhandover")]
+        [Authorize(Roles = "deliveryhandover")]
         public IActionResult DeliveryHandOver(int id)
         {
             var result = _deliveryService.DeliveryHandOver(id);
@@ -51,6 +54,8 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("deliverytake")]
+        [Authorize(Roles = "deliverytake")]
+
         public IActionResult DeliveryTake(int id)
         {
             var result = _deliveryService.DeliveryTake(id);
