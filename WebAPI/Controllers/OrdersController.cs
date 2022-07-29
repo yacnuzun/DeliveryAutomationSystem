@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
 {
-    public class OrdersController : Controller
+    public class OrdersController : ControllerBase
     {
         IOrderService _orderService;
 

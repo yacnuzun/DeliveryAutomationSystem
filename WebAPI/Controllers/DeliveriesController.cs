@@ -43,9 +43,9 @@ namespace WebAPI.Controllers
 
         [HttpPost("deliveryhandover")]
         [Authorize(Roles = "deliveryhandover")]
-        public IActionResult DeliveryHandOver(int id)
+        public IActionResult DeliveryHandOver(Delivery delivery)
         {
-            var result = _deliveryService.DeliveryHandOver(id);
+            var result = _deliveryService.DeliveryHandOver(delivery.DeliveryId);
             if (result.Success)
             {
                 return Ok(result);
@@ -55,10 +55,9 @@ namespace WebAPI.Controllers
 
         [HttpPost("deliverytake")]
         [Authorize(Roles = "deliverytake")]
-
-        public IActionResult DeliveryTake(int id)
+        public IActionResult DeliveryTake(Delivery delivery)
         {
-            var result = _deliveryService.DeliveryTake(id);
+            var result = _deliveryService.DeliveryTake(delivery.DeliveryId);
             if (result.Success)
             {
                 return Ok(result);

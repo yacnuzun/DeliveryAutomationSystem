@@ -4,6 +4,7 @@ using DataAccess.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(DeliverySystemDb))]
-    partial class DeliverySystemDbModelSnapshot : ModelSnapshot
+    [Migration("20220729112940_FakeDataandDatabaseComplited")]
+    partial class FakeDataandDatabaseComplited
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -164,19 +166,19 @@ namespace DataAccess.Migrations
                         {
                             Id = 6,
                             OperationClaimId = 4,
-                            UserId = 2
+                            UserId = 1
                         },
                         new
                         {
                             Id = 7,
                             OperationClaimId = 6,
-                            UserId = 2
+                            UserId = 1
                         },
                         new
                         {
                             Id = 8,
                             OperationClaimId = 7,
-                            UserId = 2
+                            UserId = 1
                         });
                 });
 
