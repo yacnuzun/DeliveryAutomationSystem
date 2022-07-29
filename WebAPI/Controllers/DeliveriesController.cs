@@ -1,12 +1,13 @@
 ﻿using Business.Abstract;
 using Entity.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class DeliveriesController : Controller
+    public class DeliveriesController : ControllerBase
     {
         IDeliveryService _deliveryService;
 
@@ -15,6 +16,7 @@ namespace WebAPI.Controllers
             _deliveryService = deliveryService;
         }
         [HttpGet("getall")]
+        [Authorize(Roles = "GetDelivery")]
         public IActionResult GetAll()
         {
             var result = _deliveryService.GetAll();
